@@ -1,0 +1,28 @@
+#!/bin/vbash
+#storyline: Setup nginx on edge
+config
+#make sure it can connect to the internet
+set firewall name DMZ-to-WAN rule 20 action accept
+set firewall name DMZ-to-WAN rule 20 description "allow nginx01 to connect to the web"
+set firewall name DMZ-to-WAN rule 20 source address 172.16.50.5
+#shitty firewall stuff
+set firewall name LAN-to-DMZ default-action-drop
+set firewall name LAN-to-DMZ enable-default-log
+set firewall name LAN-to-DMZ rule 10 action accept
+set firewall name LAN-to-DMZ rule 10 description "allow LAN access to nginx01"
+set firewall name LAN-to-DMZ rule 10 destination address 172.16.50.5
+set firewall name LAN-to-DMZ rule 10 destination port 80
+set firewall name LAN-to-DMZ rule 10 protocol tcp
+set firewall name LAN-to-DMZ rule 20 action accept
+set firewall name LAN-to-DMZ rule 20 description "allow mgmt access to nginx01"
+set firewall name LAN-to-DMZ rule 20 destination address 172.16.50.5
+set firewall name LAN-to-DMZ rule 20 destination port 22
+set firewall name LAN-to-DMZ rule 20 protocol tcp
+set firewall name LAN-to-DMZ rule 20 source address 172.16.200.11
+set firewall name LAN-to-DMZ rule 30 action accept
+set firewall name LAN-to-DMZ rule 30 description "allow ping from nginx to log01"
+set firewall name LAN-to-DMZ rule 30 destination address 172.16.50.5
+set firewall name LAN-to-DMZ rule 30 protocol icmp
+set firewall name LAN-to-DMZ rule 30 source address 172.16.200.10
+commit
+save
