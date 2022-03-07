@@ -1,5 +1,7 @@
 #!/bin/vbash
 #storyline: Setup nginx on edge
+source /opt/vyatta/etc/functions/script-template
+
 config
 #make sure it can connect to the internet
 set firewall name DMZ-to-WAN rule 20 action accept
@@ -26,3 +28,4 @@ set firewall name LAN-to-DMZ rule 30 protocol icmp
 set firewall name LAN-to-DMZ rule 30 source address 172.16.200.10
 commit
 save
+exit
