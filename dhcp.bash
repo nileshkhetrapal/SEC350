@@ -35,7 +35,7 @@ adduser ${uN} ${uP}
 adduser ${uN} sudo
 }
 function LogCon() {
-echo "auth,authpriv.*@172.16.200.10:1514;RYSYLOG_SyslogProtocol23Format" >> etc/rsyslog.d/sec350.conf
+echo "local0,auth,authpriv.*@172.16.200.10:1514;RYSYLOG_SyslogProtocol23Format" >> etc/rsyslog.d/sec350.conf
 systemctl restart rsyslog
 }
 function dhcpSetup() {
@@ -46,12 +46,12 @@ echo "
 default-lease-time 600;
 max-lease-time 7200;
 authoritative;
- 
+log-facility local0;
+
 subnet 172.16.150.0 netmask 255.255.255.0 {
  range 172.16.150.20 192.168.1.69;
  option routers 172.16.150.2;
  option domain-name-servers 192.168.1.1, 192.168.1.2;
-#option domain-name "mydomain.example";
 }
 " >> /etc/dhcp/dhcpd.conf
 systemctl restart dhcpd
