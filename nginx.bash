@@ -55,7 +55,7 @@ echo "
 </body>
 </html>
 " >> /var/www/html/index.html
-systemtctl restart nginx
+systemctl restart nginx
 }
 SysCon
 UserCon
