@@ -1,5 +1,6 @@
 #!/bin/vbash
 #storyline: setup edge01
+source /opt/vyatta/etc/functions/script-template
 set firewall name DMZ-to-LAN default-action 'drop'
 set firewall name DMZ-to-LAN enable-default-log
 set firewall name DMZ-to-LAN rule 1 action 'accept'
@@ -146,3 +147,4 @@ set zone-policy zone LAN interface 'eth2'
 set zone-policy zone WAN from DMZ firewall name 'DMZ-to-WAN'
 set zone-policy zone WAN from LAN firewall name 'LAN-to-WAN'
 set zone-policy zone WAN interface 'eth0'
+exit
