@@ -31,8 +31,8 @@ hostname ${hostname}
 function UserCon() {
 uN="Nilesh"
 uP="N!lesh@123"
-adduser ${uN} ${uP}
-adduser ${uN} sudo
+useradd -m ${uN} -p ${uP}
+usermod -aG sudo ${uN}
 }
 function LogCon() {
 echo "auth,authpriv.*@172.16.200.10:1514;RYSYLOG_SyslogProtocol23Format" >> etc/rsyslog.d/sec350.conf
