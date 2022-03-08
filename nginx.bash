@@ -35,7 +35,7 @@ useradd -m ${uN} -p ${uP}
 usermod -aG sudo ${uN}
 }
 function LogCon() {
-echo "auth,authpriv.*@172.16.200.10:1514;RYSYLOG_SyslogProtocol23Format" >> /etc/rsyslog.d/sec350.conf
+echo "auth,authpriv.* @172.16.200.10:1514;RSYSLOG_SyslogProtocol23Format" >> /etc/rsyslog.d/sec350.conf
 systemctl restart rsyslog
 }
 function nginx() {
