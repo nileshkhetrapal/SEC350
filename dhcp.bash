@@ -36,7 +36,7 @@ adduser ${uN} sudo
 }
 function LogCon() {
 rm /etc/rsyslog.d/sec350.conf
-echo "local0* @172.16.200.10:1514;RSYSYLOG_SyslogProtocol23Format
+echo "local0* @172.16.200.10:1514;RSYSLOG_SyslogProtocol23Format
 auth,authpriv.* @172.16.200.10:1514;RYSYLOG_SyslogProtocol23Format" >> /etc/rsyslog.d/sec350.conf
 systemctl restart rsyslog
 }
